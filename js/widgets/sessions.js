@@ -11,7 +11,20 @@ export function initSessions() {
   display.textContent = count.toLocaleString('fr-FR');
 
   resetBtn?.addEventListener('click', () => {
+    count = 0;
     localStorage.setItem(STORAGE_KEY, '0');
     display.textContent = '0';
+  });
+
+  document.getElementById('sessions-increment')?.addEventListener('click', () => {
+    count += 1;
+    localStorage.setItem(STORAGE_KEY, count);
+    display.textContent = count.toLocaleString('fr-FR');
+  });
+
+  document.getElementById('sessions-decrement')?.addEventListener('click', () => {
+    count = Math.max(0, count - 1);
+    localStorage.setItem(STORAGE_KEY, count);
+    display.textContent = count.toLocaleString('fr-FR');
   });
 }
