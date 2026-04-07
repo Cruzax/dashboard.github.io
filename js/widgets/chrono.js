@@ -42,13 +42,5 @@ export function initChrono() {
   render(elapsed);
   start();
 
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      pause();
-    } else {
-      start();
-    }
-  });
-
   window.addEventListener('beforeunload', pause);
 }

@@ -8,6 +8,7 @@ import { initStats }    from './widgets/stats.js';
 import { initChrono }   from './widgets/chrono.js';
 import { initSessions }  from './widgets/sessions.js';
 import { initChecklist } from './widgets/checklist.js';
+import { initStreak }    from './widgets/streak.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initChrono();
   initSessions();
   initChecklist();
+  initStreak();
 
   // Splash — bouton Start
   document.getElementById('start-btn')?.addEventListener('click', () => {
