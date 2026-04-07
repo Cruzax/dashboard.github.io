@@ -23,8 +23,8 @@
   border-top: 1px solid rgba(54, 143, 139, 0.40);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  padding: 22px 24px 18px;
-  overflow: hidden;
+  padding: 22px 40px 18px 24px;
+  overflow: visible;
 
   box-shadow:
     0 1px 0 0 rgba(243, 223, 193, 0.08) inset,
