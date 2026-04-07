@@ -1,0 +1,120 @@
+/* =============================================================
+   stats.css — Stats Band : cards gold neon + count-up
+   ============================================================= */
+
+.widget--stats {
+  grid-area: stats;
+  display: flex;
+  gap: var(--gap);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  padding: 0;
+}
+
+/* ---- Card de base ---- */
+.stat-card {
+  flex: 1;
+  position: relative;
+  background: rgba(255, 165, 0, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 180, 0, 0.10);
+  border-top: 1px solid rgba(255, 210, 60, 0.30);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  padding: 22px 24px 18px;
+  overflow: hidden;
+
+  box-shadow:
+    0 1px 0 0 rgba(255, 220, 80, 0.12) inset,
+    0 0 18px rgba(255, 150, 0, 0.07),
+    0 0 40px rgba(255, 100, 0, 0.04),
+    0 20px 50px rgba(0, 0, 0, 0.55);
+
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+/* Reflet haut doré */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 210, 60, 0.35) 30%,
+    rgba(255, 230, 100, 0.60) 50%,
+    rgba(255, 210, 60, 0.35) 70%,
+    transparent
+  );
+}
+
+/* Hover : neon amplifié */
+.stat-card:hover {
+  background: rgba(255, 165, 0, 0.07);
+  border-color: rgba(255, 200, 50, 0.22);
+  border-top-color: rgba(255, 230, 80, 0.55);
+  box-shadow:
+    0 1px 0 0 rgba(255, 230, 80, 0.20) inset,
+    0 0 25px rgba(255, 165, 0, 0.18),
+    0 0 55px rgba(255, 100, 0, 0.10),
+    0 0 90px rgba(255, 80, 0, 0.06),
+    0 20px 50px rgba(0, 0, 0, 0.60);
+}
+
+/* ---- Icône ---- */
+.stat-card__icon {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 1.3rem;
+  opacity: 0.55;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.stat-card:hover .stat-card__icon {
+  opacity: 0.85;
+  transform: scale(1.15);
+}
+
+/* ---- Chiffre animé ---- */
+.stat-card__value {
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  line-height: 1;
+  color: #ffd060;
+  text-shadow:
+    0 0 8px  rgba(255, 210, 50, 0.95),
+    0 0 18px rgba(255, 160, 0,  0.70),
+    0 0 35px rgba(255, 100, 0,  0.40),
+    0 0 60px rgba(255, 60,  0,  0.20);
+  transition: text-shadow 0.3s;
+}
+
+.stat-card:hover .stat-card__value {
+  text-shadow:
+    0 0 8px  rgba(255, 220, 60, 1),
+    0 0 20px rgba(255, 170, 0,  0.90),
+    0 0 40px rgba(255, 110, 0,  0.60),
+    0 0 70px rgba(255, 60,  0,  0.35);
+}
+
+/* ---- Label ---- */
+.stat-card__label {
+  margin-top: 8px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 190, 50, 0.45);
+  transition: color 0.3s;
+}
+
+.stat-card:hover .stat-card__label {
+  color: rgba(255, 210, 80, 0.70);
+}

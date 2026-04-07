@@ -1,0 +1,53 @@
+/* =============================================================
+   layout.css — Grille principale du dashboard
+   ============================================================= */
+
+.dashboard {
+  display: grid;
+  gap: var(--gap);
+  padding: var(--gap);
+  padding-top: 70px;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "clock   social   motto    motto"
+    "stats   stats    stats    stats"
+    "spotify light    youtube  check"
+    "ai      .        .        .";
+}
+
+.widget--clock   { grid-area: clock;   }
+.widget--social  { grid-area: social;  }
+.widget--motto   { grid-area: motto;   }
+.widget--spotify { grid-area: spotify; }
+.widget--light   { grid-area: light;   }
+.widget--youtube { grid-area: youtube; }
+.widget--check   { grid-area: check;   }
+.widget--stats   { grid-area: stats;   }
+.widget--ai      { grid-area: ai;      }
+
+@media (max-width: 899px) {
+  .dashboard {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "clock   motto"
+      "spotify spotify"
+      "youtube youtube";
+  }
+}
+
+@media (max-width: 599px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "clock"
+      "motto"
+      "spotify"
+      "youtube";
+  }
+}

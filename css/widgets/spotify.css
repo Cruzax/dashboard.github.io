@@ -1,0 +1,18 @@
+/* =============================================================
+   spotify.css — Widget Spotify (embed simple)
+   ============================================================= */
+
+.widget--spotify {
+  grid-area: spotify;
+  overflow: hidden;
+  border-radius: var(--glass-radius);
+  padding: 0;
+}
+
+.widget--spotify iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--glass-radius);
+}

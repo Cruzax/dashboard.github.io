@@ -1,0 +1,79 @@
+/* =============================================================
+   quote.css — Widget Citation du Jour
+   ============================================================= */
+
+.widget--quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.quote__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+/* Icône guillemet */
+.quote__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  opacity: 0.60;
+}
+
+/* Texte de la citation */
+.quote__text {
+  font-size:   0.95rem;
+  font-weight: 300;
+  line-height: 1.70;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+/* Auteur */
+.quote__author {
+  font-size:   0.78rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+.quote__author::before {
+  content: '— ';
+}
+
+/* Bouton rafraîchir */
+.quote__refresh {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  transition: background 0.20s, color 0.20s, transform 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote__refresh:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-text);
+}
+
+.quote__refresh.spinning {
+  transform: rotate(360deg);
+  transition: transform 0.50s ease;
+}
+
+/* Message d'erreur */
+.quote__error {
+  font-size:  0.85rem;
+  color: rgba(255, 100, 100, 0.80);
+  font-style: normal;
+}

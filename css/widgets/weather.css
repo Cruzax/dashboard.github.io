@@ -1,0 +1,75 @@
+/* =============================================================
+   weather.css — Widget Météo
+   ============================================================= */
+
+.widget--weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Conteneur principal une fois les données chargées */
+.weather__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Ligne ville */
+.weather__city {
+  font-size:   0.80rem;
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Ligne température + icône */
+.weather__main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.weather__icon {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.weather__temp {
+  font-size:   clamp(2rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+/* Description textuelle */
+.weather__condition {
+  font-size:   0.90rem;
+  color: var(--color-muted);
+  text-transform: capitalize;
+}
+
+/* Humidité */
+.weather__humidity {
+  font-size:   0.80rem;
+  color: var(--color-muted);
+}
+
+.weather__humidity span {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* État de chargement / erreur */
+.weather__loading,
+.weather__error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-muted);
+  font-size: 0.90rem;
+}
+
+.weather__error {
+  color: rgba(255, 100, 100, 0.80);
+}

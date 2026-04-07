@@ -1,0 +1,51 @@
+/* =============================================================
+   youtube.css — Widget YouTube
+   ============================================================= */
+
+.widget--youtube {
+  grid-area: youtube;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.youtube__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 10px;
+}
+
+.youtube__logo {
+  font-size: 1.1rem;
+}
+
+.youtube__title {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.widget--youtube iframe {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 200px;
+  border: none;
+}
+
+/* Message si l'ID de chaîne n'est pas configuré */
+.youtube__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 20px;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  text-align: center;
+  line-height: 1.6;
+}

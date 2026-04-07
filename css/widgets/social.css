@@ -1,0 +1,87 @@
+/* =============================================================
+   social.css — Social links, grille 3×2, glass noir/gris
+   ============================================================= */
+
+.widget--social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 180px;
+}
+
+/* ---- Carte de base : glass noir ---- */
+.main .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 0;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.25s, border-color 0.25s, transform 0.15s;
+}
+
+/* ---- Coins arrondis — grille 3×2 ---- */
+.main .card:nth-child(1) { border-radius: 10px 0    0    0;   }
+.main .card:nth-child(3) { border-radius: 0    10px 0    0;   }
+.main .card:nth-child(4) { border-radius: 0    0    0    10px;}
+.main .card:nth-child(6) { border-radius: 0    0    10px 0;   }
+
+/* ---- Icônes : blanches atténuées par défaut ---- */
+.main .card svg {
+  fill: rgba(255, 255, 255, 0.45);
+  transition: fill 0.2s, opacity 0.2s;
+}
+.main .card .uiverse {
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+
+/* ---- Hover global : légère surbrillance ---- */
+.main .card:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+  z-index: 1;
+}
+
+.main .card:hover svg      { fill: #fff; }
+.main .card:hover .uiverse { opacity: 1; }
+
+/* ---- Hover individuel — couleur d'accent ---- */
+/* 1 YouTube */
+.main .card:nth-child(1):hover { background: rgba(255, 0, 0, 0.25); border-color: rgba(255,0,0,0.4); }
+.main .card:nth-child(1):hover .youtube { fill: #ff4444; }
+
+/* 2 Kflix */
+.main .card:nth-child(2):hover { background: rgba(80, 80, 255, 0.2); border-color: rgba(80,80,255,0.35); }
+.main .card:nth-child(2):hover .kflix { fill: #8899ff; }
+
+/* 3 Uiverse */
+.main .card:nth-child(3):hover { background: rgba(98, 72, 255, 0.25); border-color: rgba(98,72,255,0.4); }
+.main .card:nth-child(3):hover .uiverse { opacity: 1; }
+
+/* 4 GitHub */
+.main .card:nth-child(4):hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255,255,255,0.2); }
+
+/* 5 Instagram */
+.main .card:nth-child(5):hover { background: rgba(220, 39, 67, 0.22); border-color: rgba(220,39,67,0.4); }
+.main .card:nth-child(5):hover .instagram { fill: #ff6b8a; }
+
+/* 6 Coolors */
+.main .card:nth-child(6):hover { background: rgba(255, 200, 50, 0.15); border-color: rgba(255,200,50,0.3); }

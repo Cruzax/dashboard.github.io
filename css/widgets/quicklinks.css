@@ -1,0 +1,51 @@
+/* =============================================================
+   quicklinks.css — Widget Liens Rapides
+   ============================================================= */
+
+.widget--quicklinks {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Liste sans style */
+.quicklinks__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+/* Chaque lien */
+.quicklinks__item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 0.90rem;
+  font-weight: 400;
+  transition: background 0.20s, border-color 0.20s, transform 0.15s;
+}
+
+.quicklinks__item a:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateX(4px);
+}
+
+/* Icône (emoji ou texte) */
+.quicklinks__icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.quicklinks__label {
+  flex: 1;
+}
