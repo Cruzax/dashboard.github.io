@@ -4,20 +4,20 @@
    ============================================================= */
 
 :root {
-  /* Fond — quasi-noir avec très légère teinte froide */
-  --bg-start: #080808;
-  --bg-end:   #0f0f12;
+  /* Fond — violet sombre #272635 */
+  --bg-start: #272635;
+  --bg-end:   #1f1e2e;
 
-  /* Orbes — très subtils, quasi invisibles, juste pour casser le noir plat */
-  --orb-1: rgba(255, 255, 255, 0.018);
-  --orb-2: rgba(180, 200, 255, 0.022);
-  --orb-3: rgba(150, 180, 255, 0.015);
+  /* Orbes — teintes violet/indigo pour réchauffer le fond */
+  --orb-1: rgba(160, 140, 255, 0.06);
+  --orb-2: rgba(120, 100, 220, 0.07);
+  --orb-3: rgba(180, 160, 255, 0.04);
 
-  /* Glassmorphism chic — reflets blanc/argent sur fond noir */
-  --glass-bg:           rgba(255, 255, 255, 0.04);
-  --glass-bg-hover:     rgba(255, 255, 255, 0.07);
-  --glass-border-top:   rgba(255, 255, 255, 0.18);  /* bord haut lumineux */
-  --glass-border:       rgba(255, 255, 255, 0.07);  /* autres bords discrets */
+  /* Glassmorphism — reflets lilas/blanc sur fond violet */
+  --glass-bg:           rgba(255, 255, 255, 0.06);
+  --glass-bg-hover:     rgba(255, 255, 255, 0.10);
+  --glass-border-top:   rgba(255, 255, 255, 0.22);
+  --glass-border:       rgba(255, 255, 255, 0.09);
   --glass-blur:         20px;
   --glass-radius:       18px;
   /* Ombre profonde + halo blanc subtil en haut pour l'effet "verre posé" */
@@ -52,7 +52,7 @@ body {
   color: var(--color-text);
   background: var(--bg-start);
   /* Très léger dégradé pour éviter le noir plat absolu */
-  background: radial-gradient(ellipse at 20% 10%, #111116 0%, #080808 60%, #050505 100%);
+  background: radial-gradient(ellipse at 20% 10%, #2f2d42 0%, #272635 55%, #1f1e2d 100%);
   min-height: 100vh;
   overflow: hidden;
   position: relative;
