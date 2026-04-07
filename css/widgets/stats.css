@@ -1,5 +1,5 @@
 /* =============================================================
-   stats.css — Stats Band : cards gold neon + count-up
+   stats.css — Stats Band : cards neon teal
    ============================================================= */
 
 .widget--stats {
@@ -17,25 +17,25 @@
 .stat-card {
   flex: 1;
   position: relative;
-  background: rgba(255, 165, 0, 0.04);
+  background: rgba(54, 143, 139, 0.06);
   border-radius: 14px;
-  border: 1px solid rgba(255, 180, 0, 0.10);
-  border-top: 1px solid rgba(255, 210, 60, 0.30);
+  border: 1px solid rgba(54, 143, 139, 0.18);
+  border-top: 1px solid rgba(54, 143, 139, 0.40);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   padding: 22px 24px 18px;
   overflow: hidden;
 
   box-shadow:
-    0 1px 0 0 rgba(255, 220, 80, 0.12) inset,
-    0 0 18px rgba(255, 150, 0, 0.07),
-    0 0 40px rgba(255, 100, 0, 0.04),
-    0 20px 50px rgba(0, 0, 0, 0.55);
+    0 1px 0 0 rgba(243, 223, 193, 0.08) inset,
+    0 0 18px rgba(54, 143, 139, 0.10),
+    0 0 40px rgba(36, 106, 115, 0.06),
+    0 20px 50px rgba(0, 0, 0, 0.60);
 
   transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
-/* Reflet haut doré */
+/* Reflet haut teal */
 .stat-card::before {
   content: '';
   position: absolute;
@@ -46,24 +46,24 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 210, 60, 0.35) 30%,
-    rgba(255, 230, 100, 0.60) 50%,
-    rgba(255, 210, 60, 0.35) 70%,
+    rgba(54, 143, 139, 0.45) 30%,
+    rgba(54, 143, 139, 0.70) 50%,
+    rgba(54, 143, 139, 0.45) 70%,
     transparent
   );
 }
 
 /* Hover : neon amplifié */
 .stat-card:hover {
-  background: rgba(255, 165, 0, 0.07);
-  border-color: rgba(255, 200, 50, 0.22);
-  border-top-color: rgba(255, 230, 80, 0.55);
+  background: rgba(54, 143, 139, 0.11);
+  border-color: rgba(54, 143, 139, 0.30);
+  border-top-color: rgba(54, 143, 139, 0.60);
   box-shadow:
-    0 1px 0 0 rgba(255, 230, 80, 0.20) inset,
-    0 0 25px rgba(255, 165, 0, 0.18),
-    0 0 55px rgba(255, 100, 0, 0.10),
-    0 0 90px rgba(255, 80, 0, 0.06),
-    0 20px 50px rgba(0, 0, 0, 0.60);
+    0 1px 0 0 rgba(243, 223, 193, 0.12) inset,
+    0 0 25px rgba(54, 143, 139, 0.22),
+    0 0 55px rgba(36, 106, 115, 0.14),
+    0 0 90px rgba(22, 15, 41,  0.08),
+    0 20px 50px rgba(0, 0, 0, 0.65);
 }
 
 /* ---- Icône ---- */
@@ -87,21 +87,21 @@
   font-weight: 700;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
   line-height: 1;
-  color: #ffd060;
+  color: #F3DFC1;
   text-shadow:
-    0 0 8px  rgba(255, 210, 50, 0.95),
-    0 0 18px rgba(255, 160, 0,  0.70),
-    0 0 35px rgba(255, 100, 0,  0.40),
-    0 0 60px rgba(255, 60,  0,  0.20);
+    0 0 8px  rgba(243, 223, 193, 0.80),
+    0 0 18px rgba(54,  143, 139, 0.70),
+    0 0 35px rgba(36,  106, 115, 0.45),
+    0 0 60px rgba(22,  15,  41,  0.20);
   transition: text-shadow 0.3s;
 }
 
 .stat-card:hover .stat-card__value {
   text-shadow:
-    0 0 8px  rgba(255, 220, 60, 1),
-    0 0 20px rgba(255, 170, 0,  0.90),
-    0 0 40px rgba(255, 110, 0,  0.60),
-    0 0 70px rgba(255, 60,  0,  0.35);
+    0 0 8px  rgba(243, 223, 193, 1),
+    0 0 20px rgba(54,  143, 139, 0.90),
+    0 0 40px rgba(36,  106, 115, 0.65),
+    0 0 70px rgba(54,  143, 139, 0.35);
 }
 
 /* ---- Label ---- */
@@ -111,10 +111,10 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 190, 50, 0.45);
+  color: rgba(243, 223, 193, 0.40);
   transition: color 0.3s;
 }
 
 .stat-card:hover .stat-card__label {
-  color: rgba(255, 210, 80, 0.70);
+  color: rgba(243, 223, 193, 0.65);
 }

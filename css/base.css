@@ -4,34 +4,33 @@
    ============================================================= */
 
 :root {
-  /* Fond — violet sombre #272635 */
-  --bg-start: #272635;
-  --bg-end:   #1f1e2e;
+  /* Fond — #160F29 deep navy */
+  --bg-start: #160F29;
+  --bg-end:   #0e0b1e;
 
-  /* Orbes — teintes violet/indigo pour réchauffer le fond */
-  --orb-1: rgba(160, 140, 255, 0.06);
-  --orb-2: rgba(120, 100, 220, 0.07);
-  --orb-3: rgba(180, 160, 255, 0.04);
+  /* Orbes — teal de la palette */
+  --orb-1: rgba(54, 143, 139, 0.09);
+  --orb-2: rgba(36, 106, 115, 0.11);
+  --orb-3: rgba(54, 143, 139, 0.05);
 
-  /* Glassmorphism — reflets lilas/blanc sur fond violet */
-  --glass-bg:           rgba(255, 255, 255, 0.06);
-  --glass-bg-hover:     rgba(255, 255, 255, 0.10);
-  --glass-border-top:   rgba(255, 255, 255, 0.22);
-  --glass-border:       rgba(255, 255, 255, 0.09);
+  /* Glassmorphism — reflets teal/crème sur fond navy */
+  --glass-bg:           rgba(54, 143, 139, 0.07);
+  --glass-bg-hover:     rgba(54, 143, 139, 0.13);
+  --glass-border-top:   rgba(243, 223, 193, 0.20);
+  --glass-border:       rgba(54, 143, 139, 0.18);
   --glass-blur:         20px;
   --glass-radius:       18px;
-  /* Ombre profonde + halo blanc subtil en haut pour l'effet "verre posé" */
   --glass-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.10) inset,   /* reflet haut */
-    0 -1px 0 0 rgba(255, 255, 255, 0.04) inset,  /* reflet bas */
-    0 20px 60px rgba(0, 0, 0, 0.70),
-    0 4px 16px rgba(0, 0, 0, 0.50);
+    0 1px 0 0 rgba(243, 223, 193, 0.08) inset,
+    0 -1px 0 0 rgba(54, 143, 139, 0.05) inset,
+    0 20px 60px rgba(0, 0, 0, 0.75),
+    0 4px 16px rgba(0, 0, 0, 0.55);
 
   /* Typographie */
-  --font-base:   'Inter', sans-serif;
-  --color-text:  rgba(235, 235, 245, 0.90);
-  --color-muted: rgba(180, 180, 200, 0.40);
-  --color-accent: rgba(200, 210, 255, 0.80);  /* blanc-bleu froid */
+  --font-base:    'Inter', sans-serif;
+  --color-text:   rgba(243, 223, 193, 0.92);   /* crème #F3DFC1 */
+  --color-muted:  rgba(243, 223, 193, 0.38);
+  --color-accent: #368F8B;                      /* teal moyen */
 
   /* Espacements */
   --gap: 20px;
@@ -52,7 +51,7 @@ body {
   color: var(--color-text);
   background: var(--bg-start);
   /* Très léger dégradé pour éviter le noir plat absolu */
-  background: radial-gradient(ellipse at 20% 10%, #2f2d42 0%, #272635 55%, #1f1e2d 100%);
+  background: radial-gradient(ellipse at 20% 10%, #1c1535 0%, #160F29 55%, #0e0b1e 100%);
   min-height: 100vh;
   overflow: hidden;
   position: relative;
@@ -136,10 +135,10 @@ body {
 .widget:hover {
   background:   var(--glass-bg-hover);
   box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.14) inset,
-    0 -1px 0 0 rgba(255, 255, 255, 0.05) inset,
-    0 24px 70px rgba(0, 0, 0, 0.75),
-    0 6px 20px rgba(0, 0, 0, 0.55);
+    0 1px 0 0 rgba(243, 223, 193, 0.12) inset,
+    0 -1px 0 0 rgba(54, 143, 139, 0.06) inset,
+    0 24px 70px rgba(0, 0, 0, 0.80),
+    0 6px 20px rgba(0, 0, 0, 0.60);
 }
 
 /* --- Titre générique des widgets --- */
@@ -150,4 +149,26 @@ body {
   text-transform: uppercase;
   color:          var(--color-muted);
   margin-bottom:  14px;
+}
+
+/* --- Reset sessions button — hidden bottom-right --- */
+#reset-sessions-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 999;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.08);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+  line-height: 1;
+}
+
+#reset-sessions-btn:hover {
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.06);
 }
