@@ -14,8 +14,8 @@
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
     "stats   stats    stats    stats    stats"
-    "clock   social   motto    motto    weather"
-    "spotify light    light    youtube  check";
+    "clock   social   motto    motto    motto"
+    "spotify light    light    youtube  weather";
 }
 
 .widget--clock   { grid-area: clock;   }
