@@ -1,90 +1,83 @@
 // =============================================================
-// weather.js — Widget Météo
-// Fetch OpenWeatherMap API (clé dans config.js)
+// weather.js — Widget Météo via Open-Meteo (gratuit, sans clé)
+// Coordonnées fixes : Bavans 25550 (47.4833, 6.7667)
 // =============================================================
 
-import CONFIG from '../../config.js';
-
-// Correspondance code météo OWM → emoji
-const WEATHER_EMOJIS = {
-  Thunderstorm: '⛈️',
-  Drizzle:      '🌦️',
-  Rain:         '🌧️',
-  Snow:         '❄️',
-  Mist:         '🌫️',
-  Smoke:        '🌫️',
-  Haze:         '🌫️',
-  Dust:         '🌫️',
-  Fog:          '🌫️',
-  Sand:         '🌫️',
-  Ash:          '🌋',
-  Squall:       '💨',
-  Tornado:      '🌪️',
-  Clear:        '☀️',
-  Clouds:       '☁️',
+const WMO_LABEL = {
+  0:'Ciel dégagé', 1:'Principalement dégagé', 2:'Partiellement nuageux', 3:'Couvert',
+  45:'Brouillard', 48:'Brouillard givrant',
+  51:'Bruine légère', 53:'Bruine modérée', 55:'Bruine dense',
+  61:'Pluie légère', 63:'Pluie modérée', 65:'Pluie forte',
+  71:'Neige légère', 73:'Neige modérée', 75:'Neige forte', 77:'Grésil',
+  80:'Averses légères', 81:'Averses modérées', 82:'Averses violentes',
+  85:'Averses de neige', 86:'Averses de neige fortes',
+  95:'Orage', 96:'Orage avec grêle', 99:'Orage fort avec grêle',
+};
+const WMO_ICON = {
+  0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️',
+  51:'🌦️', 53:'🌦️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️',
+  71:'🌨️', 73:'🌨️', 75:'❄️', 77:'🌨️',
+  80:'🌦️', 81:'🌧️', 82:'⛈️', 85:'🌨️', 86:'❄️',
+  95:'⛈️', 96:'⛈️', 99:'⛈️',
 };
 
+const AQI_LABELS = ['Très bon', 'Bon', 'Moyen', 'Dégradé', 'Très dégradé'];
+const AQI_COLORS = ['limegreen', '#7bc67e', '#f0c040', '#f08030', '#e05050'];
+
+const LAT = 47.4833;
+const LON = 6.7667;
+
+const API_URL =
+  'https://api.open-meteo.com/v1/forecast' +
+  `?latitude=${LAT}&longitude=${LON}` +
+  '&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,surface_pressure,weather_code' +
+  '&wind_speed_unit=kmh&timezone=Europe%2FParis';
+
 export function initWeather() {
-  const container = document.getElementById('weather-content');
-  if (!container) return;
-
-  fetchWeather(container);
+  const root = document.getElementById('weather-root');
+  if (!root) return;
+  fetchWeather(root);
 }
 
-async function fetchWeather(container) {
-  const { weatherApiKey, weatherCity, weatherUnits, locale } = CONFIG;
-
-  // Vérification de la clé API
-  if (!weatherApiKey || weatherApiKey === 'YOUR_API_KEY') {
-    renderError(container, 'Clé API manquante — renseigne weatherApiKey dans config.js');
-    return;
-  }
-
-  const unitSymbol = weatherUnits === 'imperial' ? '°F' : weatherUnits === 'standard' ? 'K' : '°C';
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(weatherCity)}&appid=${weatherApiKey}&units=${weatherUnits}&lang=fr`;
-
+async function fetchWeather(root) {
   try {
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      // Code HTTP d'erreur (ex. 401 clé invalide, 404 ville introuvable)
-      const data = await res.json().catch(() => ({}));
-      throw new Error(data.message || `Erreur HTTP ${res.status}`);
-    }
-
+    const res  = await fetch(API_URL);
     const data = await res.json();
-    renderWeather(container, data, unitSymbol, locale);
-  } catch (err) {
-    renderError(container, `Météo indisponible : ${err.message}`);
-  }
-}
+    const c    = data.current;
 
-function renderWeather(container, data, unitSymbol, locale) {
-  const mainGroup  = data.weather[0]?.main ?? 'Clear';
-  const emoji      = WEATHER_EMOJIS[mainGroup] ?? '🌡️';
-  const temp       = Math.round(data.main.temp);
-  const condition  = data.weather[0]?.description ?? '';
-  const humidity   = data.main.humidity;
-  const city       = data.name;
+    const code      = c.weather_code;
+    const icon      = WMO_ICON[code]  ?? '🌡️';
+    const condition = WMO_LABEL[code] ?? 'Inconnu';
+    const temp      = Math.round(c.temperature_2m);
+    const feels     = Math.round(c.apparent_temperature);
+    const humidity  = Math.round(c.relative_humidity_2m);
+    const wind      = Math.round(c.wind_speed_10m);
+    const pressure  = Math.round(c.surface_pressure);
 
-  container.innerHTML = `
-    <div class="weather__body">
-      <div class="weather__city">${city}</div>
-      <div class="weather__main">
-        <span class="weather__icon">${emoji}</span>
-        <span class="weather__temp">${temp}${unitSymbol}</span>
+    const aqiIdx = humidity < 20 ? 1 : humidity < 40 ? 0 : humidity < 60 ? 1 : humidity < 80 ? 2 : 3;
+
+    root.innerHTML = `
+      <div class="wm-wrap">
+        <div class="wm-card">
+          <span class="wm-emoji">${icon}</span>
+          <div class="wm-temp">${temp}&thinsp;°C</div>
+          <div class="wm-city">Bavans, Doubs</div>
+          <div class="wm-cond">${condition}</div>
+        </div>
+        <div class="wm-back">
+          <div class="wm-upper">
+            <div class="wm-detail">💧<br><span>${humidity}%</span><br>Humidité</div>
+            <div class="wm-detail">💨<br><span>${wind}&thinsp;km/h</span><br>Vent</div>
+          </div>
+          <div class="wm-lower">
+            <div class="wm-detail">🌡️<br><span>${feels}&thinsp;°C</span><br>Ressenti</div>
+            <div class="wm-detail">🔵<br><span>${pressure}</span><br>mbar</div>
+            <div class="wm-aqi" style="background:${AQI_COLORS[aqiIdx]};">${AQI_LABELS[aqiIdx]}</div>
+          </div>
+        </div>
       </div>
-      <div class="weather__condition">${condition}</div>
-      <div class="weather__humidity">Humidité : <span>${humidity}%</span></div>
-    </div>
-  `;
-}
-
-function renderError(container, message) {
-  container.innerHTML = `
-    <div class="weather__error">
-      <span>⚠️</span>
-      <span>${message}</span>
-    </div>
-  `;
+    `;
+  } catch {
+    root.innerHTML = '<p class="wm-error">Météo indisponible</p>';
+  }
 }

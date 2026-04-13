@@ -10,12 +10,12 @@
   position: relative;
   z-index: 1;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto auto 1fr;
   grid-template-areas:
-    "stats   stats    stats    stats"
-    "clock   social   motto    motto"
-    "spotify light    youtube  check";
+    "stats   stats    stats    stats    stats"
+    "clock   social   motto    motto    weather"
+    "spotify light    light    youtube  check";
 }
 
 .widget--clock   { grid-area: clock;   }
@@ -26,12 +26,14 @@
 .widget--youtube { grid-area: youtube; }
 .widget--check   { grid-area: check;   }
 .widget--stats   { grid-area: stats;   }
+.widget--weather { grid-area: weather; }
 
 @media (max-width: 899px) {
   .dashboard {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "clock   motto"
+      "weather weather"
       "spotify spotify"
       "youtube youtube";
   }
@@ -43,6 +45,7 @@
     grid-template-areas:
       "clock"
       "motto"
+      "weather"
       "spotify"
       "youtube";
   }

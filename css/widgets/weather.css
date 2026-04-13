@@ -1,75 +1,172 @@
 /* =============================================================
-   weather.css — Widget Météo
+   weather.css — Widget Météo (Open-Meteo, Bavans)
+   Design : carte blanche avec reveal des détails au survol
+   Classes préfixées wm- pour éviter tout conflit
    ============================================================= */
 
 .widget--weather {
+  grid-area: weather;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  overflow: visible;
+  z-index: 2;
+}
+
+#weather-root {
+  position: relative;
+  width: 250px;
+  height: 130px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ---- Wrapper --- */
+.wm-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-/* Conteneur principal une fois les données chargées */
-.weather__body {
+/* ---- Carte principale (face avant) ---- */
+.wm-card {
+  position: absolute;
+  width: 250px;
+  height: 130px;
+  border-radius: 25px;
+  background: whitesmoke;
+  color: black;
+  z-index: 2;
+  transition: .4s ease-in-out;
+  cursor: default;
+}
+
+.wm-card:hover {
+  background-color: #FFE87C;
+}
+
+/* Reveal de la carte détail au hover */
+.wm-card:hover + .wm-back {
+  height: 300px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.wm-card:hover + .wm-back .wm-lower {
+  top: 20.2em;
+}
+
+/* ---- Contenu de la carte principale ---- */
+.wm-emoji {
+  display: inline-block;
+  font-size: 3em;
+  line-height: 1;
+  margin: 0.6em 0.8em;
+}
+
+.wm-temp {
+  font-size: 2em;
+  position: relative;
+  top: -3em;
+  left: 4.3em;
+}
+
+.wm-city {
+  position: relative;
+  top: -10.2em;
+  left: 14em;
+  font-size: 0.6em;
+  white-space: nowrap;
+}
+
+.wm-cond {
+  position: relative;
+  top: -9.8em;
+  left: 14em;
+  font-size: 0.5em;
+  color: #777;
+  white-space: nowrap;
+}
+
+/* ---- Carte détail (derrière, révélée au hover) ---- */
+.wm-back {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  width: 240px;
+  height: 130px;
+  border-radius: 35px;
+  background: white;
+  z-index: 1;
+  transition: .4s ease-in-out;
+  overflow: hidden;
 }
 
-/* Ligne ville */
-.weather__city {
-  font-size:   0.80rem;
-  font-weight: 500;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--color-muted);
+.wm-upper {
+  display: flex;
+  flex-direction: row;
+  gap: 4em;
+  position: relative;
+  left: 1.8em;
+  top: 0.5em;
+  color: black;
 }
 
-/* Ligne température + icône */
-.weather__main {
+.wm-detail {
+  font-size: 0.6em;
+  color: #555;
+  text-align: center;
+  line-height: 1.7;
+  position: relative;
+  top: 2.7em;
+}
+
+.wm-detail span {
+  font-weight: 600;
+  color: #222;
+}
+
+.wm-lower {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2em;
+  position: absolute;
+  left: 3em;
+  top: 1em;
+  margin-top: 0.7em;
+  font-size: 0.7em;
+  transition: .4s ease-in-out;
+}
+
+.wm-lower .wm-detail {
+  top: 0;
+}
+
+/* ---- Badge qualité d'air ---- */
+.wm-aqi {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
 }
 
-.weather__icon {
-  font-size: 2.4rem;
-  line-height: 1;
-}
-
-.weather__temp {
-  font-size:   clamp(2rem, 4vw, 2.8rem);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-}
-
-/* Description textuelle */
-.weather__condition {
-  font-size:   0.90rem;
-  color: var(--color-muted);
-  text-transform: capitalize;
-}
-
-/* Humidité */
-.weather__humidity {
-  font-size:   0.80rem;
-  color: var(--color-muted);
-}
-
-.weather__humidity span {
-  color: var(--color-accent);
-  font-weight: 500;
-}
-
-/* État de chargement / erreur */
-.weather__loading,
-.weather__error {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--color-muted);
-  font-size: 0.90rem;
-}
-
-.weather__error {
-  color: rgba(255, 100, 100, 0.80);
+/* ---- Erreur ---- */
+.wm-error {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  text-align: center;
+  padding-top: 50px;
+  margin: 0;
 }
